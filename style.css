@@ -1,0 +1,123 @@
+Задание CSS,HTML
+1# Опишите все известные вам способы позиционирования 5 элементов по центру, каждый из которых должен занимать 20%.
+
+С помощью float. Задаем стили, для класса обертки
+.wrapper-items {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%) }
+}
+И для каждого эл-та
+.item1 {
+    background-color: violet;
+    float: left;
+    width: 20%;
+}
+
+
+С помощью flexbox
+.wrapper-items{
+    display: flex;
+    min-height:100vh;
+    justify-content: center;
+    align-items:center;
+    flex-grow: 1;
+}
+С помощью Grid
+.wrapper-items{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    min-height:100vh;
+    justify-content: center;
+    align-content:center;
+}
+.item1 {
+    background-color: violet;
+    float: left;
+    width: 20%;
+}
+
+#2 Опишите все известные вам способы позиционирования модального окна, по центру экрана.
+1ый способ
+ html, body {width: 100%;height: 100%;}  .modal{position: absolute;left:0;right:0;top:calc(50% - 150px);}
+2ой способ с помощью псевдо-элемента
+ .parent {
+     position: absolute;
+     top:0;
+     left:0;
+     text-align: center;
+     width: 100%;
+     height: 100%;
+     font-size:0;
+ }
+.parent::before {
+    content:'';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+.modal {
+    display: inline-block;
+    vertical-align: middle;
+}
+3ий способ с помощью Flexbox (как в первом задании)
+
+/*--------------------------------------------------------------------*/
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #f3f0f1;
+}
+body .button {
+    width: 400px;
+    height: 100px;
+    background: #f3f0f1;
+    position: relative;
+    margin-bottom: 25px;
+    border-radius: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+body .button span {
+    line-height: 100px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 32px;
+    font-weight: semibold;
+}
+body .button:nth-child(1) {
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2);
+    color: #6f6cde;
+}
+body .button:nth-child(1):hover {
+    opacity: 0.3;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2);
+}
+body .button:nth-child(1):active {
+    opacity: 1;
+    box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+    color: #79e3b6;
+}
+body .button:nth-child(2) {
+    opacity: 0.3;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2);
+    color: #6f6cde;
+    cursor: not-allowed;
+}
+body .button:nth-child(3) {
+    box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+    color: #d03b47;
+}
+body .button:nth-child(3):hover {
+    opacity: 1;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2);
+    background: #d03b47;
+    color: rgba(245, 245, 245, 0.99);
+}

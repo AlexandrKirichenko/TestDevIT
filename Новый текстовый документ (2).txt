@@ -1,0 +1,173 @@
+cd www/html  сначала захожу в папку html
+ls  смотрю файлы в папке
+grep -w ‘404’ access.log  команда grep ищет совпадения по строке в файле 
+cat file1.txt > file2.txt
+Замена строк с помощью команды sed 
+Синтаксис  sed -i 's/.*ШАБЛОН.*/ЗАМЕНЯЮЩАЯ_СТРОКА/' ФАЙЛ
+-i -> перезапись исходного файла
+s/ -> замена каждой строки, содержащей Шаблон на Заменяющую строку
+chmod (change mode)
+chmod www/html/index.html u=rw, g=r, o=
+где u - user, g - group, o - other (остальные)r - read, w - write
+ln -s ../logs/access.log loglink  Команда ln целевой_файл имя_ссылки
+-s - создание ссылки
+6.  ls с флагом -a
+- echo ‘<html></html>’ > filename.html
+==============================================
+git clone git@example.com #клонирую репозиторий 
+cd example # захожу в склонированную дерикторию
+git chekout dev  #переключа.cm в ветку dev
+echo '### May be in the future' >> README.md  # Добавляю файл  README.md 
+с текст(где ### - это заголовок третьего уровня в разметке markdown, 
+где текст - текст заголовка >> - запись в файл, README.md - название файла)
+git status #проверяем статус репозитория на наличие изменений
+git add . вношу изменения во всех файлах
+git commit -m 'Changes' # делаю коммит 'Changes'
+git push  #пушу в удаленный репозиторий!
+
+================================================
+Задание CSS,HTML
+1# Опишите все известные вам способы позиционирования 5 элементов по центру, каждый из которых должен занимать 20%.
+
+С помощью float. Задаем стили, для класса обертки
+.wrapper-items {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%) }
+}
+И для каждого эл-та
+.item1 {
+    background-color: violet;
+    float: left;
+    width: 20%;
+}
+
+
+С помощью flexbox
+.wrapper-items{
+    display: flex;
+    min-height:100vh;
+    justify-content: center;
+    align-items:center;
+    flex-grow: 1;
+}
+С помощью Grid
+.wrapper-items{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    min-height:100vh;
+    justify-content: center;
+    align-content:center;
+}
+.item1 {
+    background-color: violet;
+    float: left;
+    width: 20%;
+}
+
+#2 Опишите все известные вам способы позиционирования модального окна, по центру экрана.
+1ый способ
+ html, body {width: 100%;height: 100%;}  .modal{position: absolute;left:0;right:0;top:calc(50% - 150px);}
+2ой способ с помощью псевдо-элемента
+ .parent {
+     position: absolute;
+     top:0;
+     left:0;
+     text-align: center;
+     width: 100%;
+     height: 100%;
+     font-size:0;
+ }
+.parent::before {
+    content:'';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+.modal {
+    display: inline-block;
+    vertical-align: middle;
+}
+3ий способ с помощью Flexbox (как в первом задании)
+
+
+// #MONGODB
+// Задание
+// Напишите команды для получения следующих значений:
+//
+//     Выведите 5 записей из коллекции posts пропустив первые 5
+// Выведите все записи у которых like больше 100
+// Добавьте новую запись в коллекцию posts
+// Выведите список авторов и их общее количество like
+
+// db.posts.find({like:{$gt:100}})
+// db.posts.find().skip(5)
+// db.posts.insertOne({
+//     title: 'TailwindCSS & React.js',
+//     content: 'Best practices of TailwindCSS & React',
+//     author: 'Adam Wathan',
+//     like: 54,
+//     dislike: 3 })
+// db.posts.aggregate([{
+//     $group:{
+//         _id: null,
+//         authors:{$addToSet:"$author"},
+//         totalLikes:{$sum:"$like"}
+//     }},{
+//     $project:{
+//         _id:0
+//     }}
+// ])
+// ------------
+// db.posts.insertMany([
+//     {
+//         "title": "HTML part2",
+//         "content": "HTML5  and CSS3(part2)",
+//         "author": "Robson",
+//         "like": 46,
+//         "dislike": 1
+//     },
+//     {
+//         "title": "You still Don't Know JS part2",
+//         "content": "You’ll get a more complete understanding of JavaScript(part2)",
+//         "author": "Simpson",
+//         "like": 127,
+//         "dislike": 4
+//     },
+//     {
+//         "title": "ES9 JavaScript",
+//         "content": "This is a post about JavaScript, programming, and the wonders of the digital.",
+//         "author": "Haverbeke",
+//         "like": 142,
+//         "dislike": 13
+//     },
+//     {
+//         "title": "Secrets of the JavaScript Ninja(part2)",
+//         "content": "You have to be a ninja. Secrets of the JavaScript Ninja leads you down the pathway to JavaScript enlightenment.(part2)",
+//         "author": "Resig",
+//         "like": 171,
+//         "dislike": 3
+//     },{
+//         "title": "Clean code(part2)",
+//         "content": "Martin has teamed up with his colleagues from Object Mentor to distill their best agile practice of cleaning code(part2)",
+//         "author": "Martin",
+//         "like": 171,
+//         "dislike": 12
+//     },
+//     {
+//         "title": "TailwindCSS & React.js",
+//         "content": "Best practices of tailwindcss on React",
+//         "author": "Wathan",
+//         "like": 50,
+//         "dislike": 3
+//     },
+//     {
+//         "title": " Algorithms(part2)",
+//         "content": "Algorithms are just step-by-step algorithms for solving problems(part2)",
+//         "author": "Bhargava",
+//         "like": 153,
+//         "dislike": 8
+//     }
+// ])
+//
